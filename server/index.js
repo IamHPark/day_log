@@ -2,6 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 import postRoutes from './routes/posts.js';
 
@@ -16,7 +18,8 @@ app.use(cors());
 app.use('/posts', postRoutes);
 
 // connect with MongoDB
-const CONNECTION_URL = 'mongodb+srv://travelers:travelers123@cluster0.nozci3d.mongodb.net/?retryWrites=true&w=majority'
+console.log(process.env)
+const CONNECTION_URL = process.env.CONNECTION_URL
 
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
